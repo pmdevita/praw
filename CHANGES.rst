@@ -4,6 +4,10 @@ Change Log
 Unreleased
 ----------
 
+**Added**
+
+* :class:`.SQLiteTokenManager`.
+
 7.2.0 (2021/02/24)
 ------------------
 

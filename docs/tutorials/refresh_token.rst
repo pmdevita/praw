@@ -101,3 +101,10 @@ PRAW to both use that refresh token, and keep the file up-to-date with a valid r
 
 .. literalinclude:: ../examples/use_file_token_manager.py
     :language: python
+
+.. _sqlite_token_manager:
+
+For more complex examples, PRAW provides the :class:`.SQLiteTokenManager`.
+
+.. literalinclude:: ../examples/use_sqlite_token_manager.py
+    :language: python
