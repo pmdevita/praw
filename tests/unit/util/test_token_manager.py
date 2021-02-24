@@ -1,6 +1,7 @@
 """Test praw.util.refresh_token_manager."""
-from tempfile import NamedTemporaryFile
+from tempfile import TemporaryDirectory
 from unittest import mock
+import os
 
 import pytest
 
@@ -78,10 +79,11 @@ class TestSQLiteTokenManager(UnitTest):
         assert not manager.is_registered()
 
     def test_multiple_instances(self):
-        with NamedTemporaryFile() as fp:
-            manager1 = SQLiteTokenManager(fp.name, "dummy_key1")
-            manager2 = SQLiteTokenManager(fp.name, "dummy_key1")
-            manager3 = SQLiteTokenManager(fp.name, "dummy_key2")
+        with TemporaryDirectory() as directory:
+            path = os.path.join(directory, "db.sqlite")
+            manager1 = SQLiteTokenManager(path, "dummy_key1")
+            manager2 = SQLiteTokenManager(path, "dummy_key1")
+            manager3 = SQLiteTokenManager(path, "dummy_key2")
 
             manager1.register("dummy_value1")
             assert manager2.is_registered()
